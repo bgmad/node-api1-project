@@ -9,6 +9,7 @@ server.get('/', (req, res) => {
     res.json({api: 'up'})
 });
 
+// curl -d '{"name": "tester", "bio": "tester bio"}' -H 'Content-Type: application/json' -X POST http://localhost:5000/api/users
 server.post('/api/users', async (req, res) => {
     const user = req.body;
     if(!user.name || !user.bio) {
@@ -23,6 +24,7 @@ server.post('/api/users', async (req, res) => {
     }
 });
 
+// curl -X GET http://localhost:5000/api/users
 server.get('/api/users', async (req, res) => {
     try {
         const users = await User.findAll();
@@ -32,6 +34,7 @@ server.get('/api/users', async (req, res) => {
     }
 });
 
+// curl -X GET http://localhost:5000/api/users/:id
 server.get('/api/users/:id', async (req, res) => {
     const id = req.params.id;
     try {
@@ -45,6 +48,7 @@ server.get('/api/users/:id', async (req, res) => {
     }
 });
 
+// curl -X DELETE http://localhost:5000/api/users/:id
 server.delete('/api/users/:id', async (req, res) => {
     const id = req.params.id;
     try {
@@ -58,6 +62,7 @@ server.delete('/api/users/:id', async (req, res) => {
     }
 });
 
+// curl -d '{"name": "name", "bio": "bio"}' -H 'Content-Type: application/json' -X PUT http://localhost:5000/api/users/:id
 server.put('/api/users/:id', async (req, res) => {
     const id = req.params.id;
     const changes = req.body;
